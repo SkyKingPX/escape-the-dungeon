@@ -1,0 +1,12 @@
+{
+    "image1": {
+        "data": "hwQQABAAAAB3d3fn7u7u7nd3d+7u7u7ud3d37u7u7u53d3fn7u7u7nd3d+fu7u7ud3d3d+7u7u53d+fu7u7u7nd3d+7u7u7ud3d35+7u7u53d3fu7u7u7nd3d+7u7u7ud3d3d+7u7u53d3fn7u7u7nd3d+7u7u7ud3fn7u7u7u53d3fn7u7u7g==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "bock"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}
