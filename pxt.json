@@ -1,10 +1,11 @@
 {
-    "name": "Minecraft",
+    "name": "Escape the Dungeon",
     "description": "",
     "dependencies": {
         "device": "*",
         "pxt-status-bar": "github:jwunderl/pxt-status-bar#v0.4.2",
-        "animation": "*"
+        "animation": "*",
+        "multiplayer": "*"
     },
     "files": [
         "main.blocks",
@@ -20,7 +21,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "1.12.30",
+        "target": "1.12.33",
         "targetId": "arcade"
     },
     "supportedTargets": [
