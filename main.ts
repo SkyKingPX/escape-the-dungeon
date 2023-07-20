@@ -10,9 +10,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Hard, function (sprite, otherSpr
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSprite) {
     sprites.destroy(EasyBtn)
     sprites.destroy(HardBtn)
+    sprites.destroy(TutorialBtn)
     sprites.destroy(Maus)
     sprites.destroy(MultiplayerBtn)
-    tiles.setCurrentTilemap(tilemap`Level1`)
     player1 = sprites.create(img`
         . . . . . . . c c c . . . . . . 
         . . . . . . c b 9 c . . . . . . 
@@ -31,10 +31,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
         . . . . c b 1 1 1 1 b c . . . . 
         . . . . . f f f f f f . . . . . 
         `, SpriteKind.Player)
-    tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
     player1.setVelocity(45, 45)
+    info.setScore(1)
+    tiles.setCurrentTilemap(tilemap`Level1`)
+    tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
     controller.moveSprite(player1)
-    a = sprites.create(img`
+    Enemy1 = sprites.create(img`
         ........................
         ........................
         ........................
@@ -60,9 +62,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
         ........................
         ........................
         `, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(s, sprites.dungeon.floorLight5)
-    a.follow(player1, 40)
-    s = sprites.create(img`
+    tiles.placeOnRandomTile(Enemy1, sprites.dungeon.floorLight5)
+    Enemy1.follow(player1, 40)
+    Enemy2 = sprites.create(img`
         ........................
         ........................
         ........................
@@ -88,9 +90,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
         ........................
         ........................
         `, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(s, sprites.dungeon.floorLight1)
-    s.follow(player1, 40)
-    t = sprites.create(img`
+    tiles.placeOnRandomTile(Enemy2, sprites.dungeon.floorLight1)
+    Enemy2.follow(player1, 40)
+    Enemy3 = sprites.create(img`
         ........................
         ........................
         ........................
@@ -116,9 +118,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
         ........................
         ........................
         `, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(t, sprites.dungeon.floorLightMoss)
-    t.follow(player1, 40)
-    u = sprites.create(img`
+    tiles.placeOnRandomTile(Enemy3, sprites.dungeon.floorLightMoss)
+    Enemy3.follow(player1, 40)
+    Enemy4 = sprites.create(img`
         ........................
         ........................
         ........................
@@ -144,11 +146,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
         ........................
         ........................
         `, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(u, sprites.dungeon.floorLight4)
-    u.follow(player1, 40)
-})
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    info.setScore(1)
+    tiles.placeOnRandomTile(Enemy4, sprites.dungeon.floorLight4)
+    Enemy4.follow(player1, 40)
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     player1.setImage(img`
@@ -170,11 +169,31 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . f f f f f f . . . . . 
         `)
 })
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    player1.setImage(img`
+        . . . . . . . c c . . . . . . . 
+        . . . . . . c 9 c . . . . . . . 
+        . . . . c c 1 1 1 c c c . . . . 
+        . . c c c c 1 1 1 1 c b c c . . 
+        . c b b 1 b 1 1 1 1 b 1 b b c . 
+        . c b 1 1 b b 1 1 b b 1 1 b c . 
+        . . c 1 1 1 b b b b 1 1 1 f . . 
+        . . . f 1 1 1 1 1 1 1 1 f f . . 
+        . . . . f e e e f b e e f f . . 
+        . . . . f e b b f 1 b f f f . . 
+        . . . . f b b b b b b f f . . . 
+        . . . . . f e e e e f e e . . . 
+        . . . . . f 1 b b e b b e . . . 
+        . . . . f 9 1 1 1 e b b e . . . 
+        . . . . c b 1 1 1 1 e e . . . . 
+        . . . . . f f f f f f . . . . . 
+        `)
+})
 controller.B.onEvent(ControllerButtonEvent.Repeated, function () {
-    sprites.destroy(a)
-    sprites.destroy(s)
-    sprites.destroy(t)
-    sprites.destroy(u)
+    sprites.destroy(Enemy1)
+    sprites.destroy(Enemy2)
+    sprites.destroy(Enemy3)
+    sprites.destroy(Enemy4)
     tiles.setWallAt(tiles.getTileLocation(27, 28), false)
     tiles.setWallAt(tiles.getTileLocation(27, 29), false)
     tiles.setWallAt(tiles.getTileLocation(28, 29), false)
@@ -197,10 +216,30 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Hebel2`, function (sprite, lo
     tiles.setWallAt(tiles.getTileLocation(9, 23), false)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
-    tiles.placeOnRandomTile(a, sprites.dungeon.floorLight5)
-    tiles.placeOnRandomTile(s, sprites.dungeon.floorLight4)
-    tiles.placeOnRandomTile(t, sprites.dungeon.floorLightMoss)
-    tiles.placeOnRandomTile(u, sprites.dungeon.floorLight1)
+    tiles.placeOnRandomTile(Enemy1, sprites.dungeon.floorLight5)
+    tiles.placeOnRandomTile(Enemy2, sprites.dungeon.floorLight4)
+    tiles.placeOnRandomTile(Enemy3, sprites.dungeon.floorLightMoss)
+    tiles.placeOnRandomTile(Enemy4, sprites.dungeon.floorLight1)
+})
+controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
+    player1.setImage(img`
+        . . . . . . . c c c . . . . . . 
+        . . . . . . c b 9 c . . . . . . 
+        . . . . c c c 1 1 c c c . . . . 
+        . . c c b c 1 1 1 1 c c c c . . 
+        . c b b 1 b 1 1 1 1 b 1 b b c . 
+        . c b 1 1 b b 1 1 b b 1 1 b c . 
+        . . f 1 1 1 b b b b 1 1 1 c . . 
+        . . f f 1 1 1 1 1 1 1 1 f f . . 
+        . . f f f b f e e f b f f f . . 
+        . . f f f 1 f b b f 1 f f f . . 
+        . . . f f b b b b b b f f . . . 
+        . . . e e f e e e e f e e . . . 
+        . . e b c b 1 b b 1 b f b e . . 
+        . . e e f 9 1 1 1 1 9 f e e . . 
+        . . . . c b 1 1 1 1 b c . . . . 
+        . . . . . f f f f f f . . . . . 
+        `)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     player1.setImage(img`
@@ -223,7 +262,35 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
         `)
 })
 info.onScore(1, function () {
-	
+    tiles.setCurrentTilemap(tilemap`LadeMap`)
+    tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
+    textSprite = textsprite.create("Laden...", 13, 10)
+    textSprite1 = textsprite.create("0%", 13, 10)
+    tiles.placeOnRandomTile(textSprite, sprites.dungeon.floorMixed)
+    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
+    pause(500)
+    textSprite1 = textsprite.create("20%", 13, 10)
+    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
+    pause(500)
+    textSprite1 = textsprite.create("40%", 13, 10)
+    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
+    pause(500)
+    textSprite1 = textsprite.create("60%", 13, 10)
+    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
+    pause(500)
+    textSprite1 = textsprite.create("80%", 13, 10)
+    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
+    pause(500)
+    textSprite1 = textsprite.create("100%", 13, 10)
+    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
+    pause(500)
+    sprites.destroy(textSprite)
+    textSprite1 = textsprite.create("Teleportieren...", 13, 10)
+    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
+    pause(500)
+    sprites.destroy(textSprite1)
+    sprites.destroy(textSprite1)
+    info.setScore(0)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     game.over(false)
@@ -240,12 +307,15 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (spr
     tiles.setCurrentTilemap(tilemap`Level4`)
     tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
 })
-let u: Sprite = null
-let t: Sprite = null
-let s: Sprite = null
-let a: Sprite = null
+let textSprite1: TextSprite = null
+let textSprite: TextSprite = null
+let Enemy4: Sprite = null
+let Enemy3: Sprite = null
+let Enemy2: Sprite = null
+let Enemy1: Sprite = null
 let player1: Sprite = null
 let Maus: Sprite = null
+let TutorialBtn: Sprite = null
 let MultiplayerBtn: Sprite = null
 let HardBtn: Sprite = null
 let EasyBtn: Sprite = null
@@ -372,77 +442,69 @@ scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     `)
 EasyBtn = sprites.create(img`
-    77777777777777777777777777777777777777777777777777
-    77777777777777777777777777777777777777777777777777
-    77777777777777777777777777777777777777777777777777
-    77733777777777777777777777777777777777777777777777
-    77733333333377777773777777777777777777377773777777
-    77737777777777777773777777777733337777377773777777
-    77737777777777777733377777777337777777737737777777
-    77737777777777777737377777777377777777737737777777
-    77733777777777777737377777777377777777773377777777
-    77737337777777777737737777777377777777773377777777
-    77737773333377777737737777773377777777777377777777
-    77737777777777777737737777777377777777777377777777
-    77737777777777777737773777777337777777777377777777
-    77737777777777777737773777777773377777777377777777
-    77737777777777777333333777777777337777777377777777
-    77737777777777777337773777777777733777777377777777
-    77737777777777777337777377777777773777777377777777
-    77733333333333377337777377777777773777777377777777
-    77777777777777777377777377733333333777777377777777
-    77777777777777777777777377777777777777777777777777
-    77777777777777777777777737777777777777777777777777
-    77777777777777777777777737777777777777777777777777
-    77777777777777777777777777777777777777777777777777
-    77777777777777777777777777777777777777777777777777
-    77777777777777777777777777777777777777777777777777
+    7777777777777777777777777777777777777777777777777777
+    7777777777777777777777777777777777777777777777777777
+    7733333333377777733377777777733333337733377777733377
+    7733333333377777333337777777733333337733377777733377
+    77333dddddd777773333377777333ddddddd77d3377777733d77
+    773337777777777333d33377773337777777777dd337733dd777
+    7733377777777773337333777733377777777777733773377777
+    77333777777777333777333777333777777777777d3333d77777
+    7733333333377733d777d33777ddd33333777777773333777777
+    773333333337733377777333777773333377777777d33d777777
+    77333dddddd773337777733377777ddddd337777777337777777
+    7733377777777333333333337777777777337777777337777777
+    7733377777777333333333337777777777337777777337777777
+    7733377777777333ddddd3337777777777337777777337777777
+    7733333333377333777773337733333333dd7777777337777777
+    7733333333377333777773337733333333777777777337777777
+    77ddddddddd77ddd77777ddd77dddddddd777777777dd7777777
+    7777777777777777777777777777777777777777777777777777
+    7777777777777777777777777777777777777777777777777777
     `, SpriteKind.Easy)
 HardBtn = sprites.create(img`
-    22222222222222222222222222222222222222222222222222
-    21112222211122222211122222211111111222111111111122
-    21112222211122222211122222211111111122111111111112
-    21112222211122222111112222211111111122111111111112
-    211122222111222221111122222111ddd11122111ddddd1112
-    21112222211122221111111222211122211122111222221112
-    2111222221112222111d111222211111111122111222221112
-    21112222211122221112111122211111111122111222221112
-    211111111111222111d2d11122211111111222111222221112
-    211111111111222111222111222111d1112222111222221112
-    21111111111122211d222d1122211121112222111222221112
-    2111ddddd11122111222221112211121111222111222221112
-    21112222211122111222221112211121111222111222221112
-    2111222221112211122222111221112d111122111222221112
-    21112222211122111222221112211122d11122111222221112
-    21112222211122111111111112211122211122111222221112
-    21112222211122111111111112211122211122111222221112
-    21112222211122111111111112211122211122111222221112
-    21112222211122111ddddd1112211122211122111222221112
-    21112222211122111222221112211122211122111222221112
-    21112222211122111222221112211122211122111111111112
-    21112222211122111222221112211122211122111111111112
-    211122222111221112222211122111222111221111111111d2
-    2ddd22222ddd22ddd22222ddd22ddd222ddd22dddddddddd22
-    22222222222222222222222222222222222222222222222222
+    2222222222222222222222222222222222222222222222222222
+    2222222222222222222222222222222222222222222222222222
+    2211122222111222222111222222111111112221111111111222
+    2211122222111222221111122222111111111221111111111122
+    2211122222111222221111122222111ddd11122111ddddd11122
+    22111222221112222111d1112222111222d11221112222211122
+    2211122222111222211121112222111222211221112222211122
+    2211122222111222111222111222111222111221112222211122
+    221111111111122211d222d1122211111111d221112222211122
+    22111111111112211122222111221111111d2221112222211122
+    2211122222111221112222211122111111112221112222211122
+    2211122222111221111111111122111d11111221112222211122
+    22111222221112211111111111221112d1111221112222211122
+    221112222211122111ddddd1112211122d111221112222211122
+    2211122222111221112222211122111222111221111111111122
+    2211122222111221112222211122111222111221111111111d22
+    22ddd22222ddd22ddd22222ddd22ddd222ddd22dddddddddd222
+    2222222222222222222222222222222222222222222222222222
+    2222222222222222222222222222222222222222222222222222
     `, SpriteKind.Hard)
 MultiplayerBtn = sprites.create(img`
-    888888888888888888888888888888888888888888888888888888888888888888888888888
-    888888888888888888888888888888888888883888888888888888888888888888888888888
-    838888888888888888888888888888888888338388888838888888888888888888888888888
-    833883888883888888888333333888888888338338888838888883333333388888888888888
-    833883888883888888888883888888388888838833888338888883888888338888888888888
-    833383388883888888888883888888388888833333888338888883838888838888888888888
-    883833388883888888888883888888388888838888888838888883338888338888888888888
-    883833838883888888888883888888838888883888888838888888338833888888888888888
-    883888838883888888888883888888838888883888888838888888383388888888888888888
-    883888883883888888888883888888838888883888888833333388833333888888888888888
-    883888883883888888888383888888838888883888888888888888833888333888888338888
-    883888888883333333333888388888838888883888888888888888883388888388883388888
-    883888888888888888888888388888838888888888888888888888888388888888883388888
-    888888888888888888888888388888888888888888888888888888888338888888883388888
-    888888888888888888888888888888888888888888888888888888888838888888888888888
+    888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+    888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+    888811188811188881118888811188111888888881111111111188111881111111188811188888888888888888
+    888811188811188881118888811188111888888881111111111188111881111111118811188888888888888888
+    88881118881118888111888881118811188888888dddd111dddd8811188111ddd1118811188888888888888888
+    88811111811111888111888881118811188888888dddd111dddd8811188111888d118811188888888888888888
+    888111111111118881118888811188111888888888888111888888111881118888118811188888888888888888
+    888111d111d1118881118888811188111888888888888111888888111881118881118811188888888888888888
+    8881118111811188811188888111881118888888888881118888881118811111111d8811188888888888888888
+    88111d81118d111881118888811188111888888888888111888888111881111111d88811188888888888888888
+    88111881118811188111888881118811188888888888811188888811188111dddd888811188888888888888888
+    881118811188111881118888811188111888888888888111888888111881118888888811188888888888888888
+    8811188ddd88111881118888811188111888888888888111888888111881118888888811188888888888888888
+    881118888888111881118888811188111888888888888111888888111881118888888811188888888888888888
+    88111888888811188ddd11111ddd88111111111888888111888888111881118888888811111111188888888888
+    881118888888111888881111188888111111111888888111888888111881118888888811111111188888888888
+    88ddd8888888ddd88888ddddd88888ddddddddd888888ddd888888ddd88ddd88888888ddddddddd88888888888
+    888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+    888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
     `, SpriteKind.Multiplayer)
-let TutorialBtn = sprites.create(img`
+TutorialBtn = sprites.create(img`
     aaaaaaaaaaaaaaaaaaaaaaaaaaaa11
     a1111111a1aaa1aa11111111aa11a1
     aaa111aaa1aaa1aaaaaa1aaa11aaa1
