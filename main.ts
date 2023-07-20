@@ -7,6 +7,7 @@ namespace SpriteKind {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Hard, function (sprite, otherSprite) {
 	
 })
+// Level-Steuerung
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSprite) {
     sprites.destroy(EasyBtn)
     sprites.destroy(HardBtn)
@@ -189,9 +190,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . f f f f f f . . . . . 
         `)
 })
-/**
- * Map-Funktionen
- */
+// Map-Funktionen
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Hebel1`, function (sprite, location) {
     game.showLongText("Da ist irgendwas passiert glaube ich...", DialogLayout.Top)
     player1.y += 10
@@ -214,9 +213,7 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSpr
     tiles.placeOnRandomTile(Enemy3, sprites.dungeon.floorLightMoss)
     tiles.placeOnRandomTile(Enemy4, sprites.dungeon.floorLight1)
 })
-/**
- * Laufanimationen
- */
+// Laufanimationen
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     player1.setImage(img`
         . . . . . . . c c c . . . . . . 
@@ -257,9 +254,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . f f f f f f . . . . . 
         `)
 })
-/**
- * Ladeanzeige
- */
+// Ladeanzeige
 info.onScore(1, function () {
     tiles.setCurrentTilemap(tilemap`LadeMap`)
     tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
@@ -302,11 +297,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Hebel3`, function (sprite, lo
     tiles.setWallAt(tiles.getTileLocation(21, 25), false)
     tiles.setWallAt(tiles.getTileLocation(21, 24), false)
 })
-/**
- * Level
- */
+// Level
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (sprite, location) {
-    tiles.setCurrentTilemap(tilemap`Level4`)
+    tiles.setCurrentTilemap(tilemap`Level2`)
     tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
 })
 let textSprite1: TextSprite = null
