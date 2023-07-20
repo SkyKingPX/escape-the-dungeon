@@ -1,7 +1,7 @@
  
 
 
-> Diese Seite bei [https://skykingpx.github.io/minecraft/](https://skykingpx.github.io/minecraft/) öffnen
+> Diese Seite bei [https://skykingpx.github.io/escape-the-dungeon/](https://skykingpx.github.io/escape-the-dungeon/) öffnen
 
 ## Als Erweiterung verwenden
 
@@ -10,22 +10,22 @@ Dieses Repository kann als **Erweiterung** in MakeCode hinzugefügt werden.
 * öffne [https://arcade.makecode.com/](https://arcade.makecode.com/)
 * klicke auf **Neues Projekt**
 * klicke auf **Erweiterungen** unter dem Zahnrad-Menü
-* nach **https://github.com/skykingpx/minecraft** suchen und importieren
+* nach **https://github.com/skykingpx/escape-the-dungeon** suchen und importieren
 
-## Dieses Projekt bearbeiten ![Build Status Abzeichen](https://github.com/skykingpx/minecraft/workflows/MakeCode/badge.svg)
+## Dieses Projekt bearbeiten ![Build Status Abzeichen](https://github.com/skykingpx/escape-the-dungeon/workflows/MakeCode/badge.svg)
 
 Um dieses Repository in MakeCode zu bearbeiten.
 
 * öffne [https://arcade.makecode.com/](https://arcade.makecode.com/)
 * klicke auf **Importieren** und dann auf **Importiere URL**
-* füge **https://github.com/skykingpx/minecraft** ein und klicke auf Importieren
+* füge **https://github.com/skykingpx/escape-the-dungeon** ein und klicke auf Importieren
 
 ## Blockvorschau
 
 Dieses Bild zeigt den Blockcode vom letzten Commit im Master an.
 Die Aktualisierung dieses Bildes kann einige Minuten dauern.
 
-![Eine gerenderte Ansicht der Blöcke](https://github.com/skykingpx/minecraft/raw/master/.github/makecode/blocks.png)
+![Eine gerenderte Ansicht der Blöcke](https://github.com/skykingpx/escape-the-dungeon/raw/master/.github/makecode/blocks.png)
 
 #### Metadaten (verwendet für Suche, Rendering)
 
