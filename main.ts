@@ -14,8 +14,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
     sprites.destroy(TutorialBtn)
     sprites.destroy(Maus)
     sprites.destroy(MultiplayerBtn)
-    sprites.destroy(textSprite)
-    sprites.destroy(textSprite1)
     player1 = sprites.create(img`
         . . . . . . . c c c . . . . . . 
         . . . . . . c b 9 c . . . . . . 
@@ -35,8 +33,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
         . . . . . f f f f f f . . . . . 
         `, SpriteKind.Player)
     scene.cameraFollowSprite(player1)
+    Ladebildschirm = 1
     player1.setVelocity(45, 45)
-    info.setScore(1)
+    pause(3600)
     tiles.setCurrentTilemap(tilemap`Level1`)
     tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
     Spiel = 1
@@ -154,6 +153,16 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
     tiles.placeOnRandomTile(Enemy4, sprites.dungeon.floorLight4)
     Enemy4.follow(player1, 40)
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Info1`, function (sprite, location) {
+    game.showLongText("Auf diesen Feldern erscheinen Monster in jedem Level.", DialogLayout.Top)
+    game.showLongText("Alle Monster versuchen dich zu Fangen.", DialogLayout.Top)
+    game.showLongText("Alle Monster versuchen dich zu Fangen.", DialogLayout.Top)
+    game.showLongText("Selbstverständlich musst du Ihnen ausweichen. ", DialogLayout.Top)
+    game.showLongText("Die Monster besitzen noch eine wichtige Eigenschaft:", DialogLayout.Top)
+    game.showLongText("Sie können sich auch gegenseitig Fangen.", DialogLayout.Top)
+    game.showLongText("Wenn das passiert Werden alle Monster zurück zu ihren Feldern teleportiert.", DialogLayout.Top)
+    player1.x += 10
+})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Spiel == 1) {
         player1.setImage(img`
@@ -175,6 +184,154 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . f f f f f f . . . . . 
             `)
     }
+})
+// Level-Steuerung
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Tutorial, function (sprite, otherSprite) {
+    sprites.destroy(EasyBtn)
+    sprites.destroy(HardBtn)
+    sprites.destroy(TutorialBtn)
+    sprites.destroy(Maus)
+    sprites.destroy(MultiplayerBtn)
+    player1 = sprites.create(img`
+        . . . . . . . c c c . . . . . . 
+        . . . . . . c b 9 c . . . . . . 
+        . . . . c c c 1 1 c c c . . . . 
+        . . c c b c 1 1 1 1 c c c c . . 
+        . c b b 1 b 1 1 1 1 b 1 b b c . 
+        . c b 1 1 b b 1 1 b b 1 1 b c . 
+        . . f 1 1 1 b b b b 1 1 1 c . . 
+        . . f f 1 1 1 1 1 1 1 1 f f . . 
+        . . f f f b f e e f b f f f . . 
+        . . f f f 1 f b b f 1 f f f . . 
+        . . . f f b b b b b b f f . . . 
+        . . . e e f e e e e f e e . . . 
+        . . e b c b 1 b b 1 b f b e . . 
+        . . e e f 9 1 1 1 1 9 f e e . . 
+        . . . . c b 1 1 1 1 b c . . . . 
+        . . . . . f f f f f f . . . . . 
+        `, SpriteKind.Player)
+    scene.cameraFollowSprite(player1)
+    Ladebildschirm = 1
+    player1.setVelocity(45, 45)
+    pause(3600)
+    tiles.setCurrentTilemap(tilemap`TutorialMap`)
+    textSprite8 = textsprite.create("Steuerung -> B", 13, 10)
+    tiles.placeOnTile(textSprite8, tiles.getTileLocation(8, 6))
+    tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
+    Spiel = 1
+    controller.moveSprite(player1)
+    Enemy1 = sprites.create(img`
+        ........................
+        ........................
+        ........................
+        ........................
+        ..........ffff..........
+        ........ff1111ff........
+        .......fb111111bf.......
+        .......f11111111f.......
+        ......fd11111111df......
+        ......fd11111111df......
+        ......fddd1111dddf......
+        ......fbdbfddfbdbf......
+        ......fcdcf11fcdcf......
+        .......fb111111ffff.....
+        ......fffcdb1bc111cf....
+        ....fc111cbfbf1b1b1f....
+        ....f1b1b1ffffbfbfbf....
+        ....fbfbfffffff.........
+        .........fffff..........
+        ..........fff...........
+        ........................
+        ........................
+        ........................
+        ........................
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(Enemy1, sprites.dungeon.floorLight5)
+    Enemy1.follow(player1, 40)
+    Enemy2 = sprites.create(img`
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ..........ffff..........
+        ........ff1111ff........
+        .......fb111111bf.......
+        .....fffc1111111f.......
+        ...fc111cd1111111f......
+        ...f1b1b1b1111dddf......
+        ...fbfbffcf11fcddf......
+        ......fcf111111bbf......
+        .......ccbdb1b1fcf......
+        .......fffbfbfdff.......
+        ........ffffffff........
+        ........fffffffffff.....
+        .........fffffc111cf....
+        .........fffff1b1b1f....
+        ..........ffffbfbfbf....
+        ...........ffff.........
+        ........................
+        ........................
+        ........................
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(Enemy2, sprites.dungeon.floorLight1)
+    Enemy2.follow(player1, 40)
+    Enemy3 = sprites.create(img`
+        ........................
+        ........................
+        ........................
+        ........................
+        ..........ffff..........
+        ........ff1111ff........
+        .......fb111111bf.......
+        .......f11111111f.......
+        ......fd11111111df......
+        ......fd11111111df......
+        ......fddd1111dddf......
+        ......fbdbfddfbdbf......
+        ......fcdcf11fcdcf......
+        .......fb111111bf.......
+        ......fffcdb1bdffff.....
+        ....fc111cbfbfc111cf....
+        ....f1b1b1ffff1b1b1f....
+        ....fbfbffffffbfbfbf....
+        .........ffffff.........
+        ...........fff..........
+        ........................
+        ........................
+        ........................
+        ........................
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(Enemy3, sprites.dungeon.floorLightMoss)
+    Enemy3.follow(player1, 40)
+    Enemy4 = sprites.create(img`
+        ........................
+        ........................
+        ........................
+        ........................
+        ..........ffff..........
+        ........ff1111ff........
+        .......fb111111bf.......
+        .......f11111111f.......
+        ......fd111111111f......
+        ......fd11111111df......
+        ......fd11111111df......
+        ......fcdd1111ddcff.....
+        .......fbcf11fcbfbbf....
+        .......ffbdb1bdffff.....
+        ........fcbfbfdf........
+        ........ffffffff........
+        ......ffffffffff........
+        .....fcb1bcffff.........
+        ......ffbff.............
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(Enemy4, sprites.dungeon.floorLight4)
+    Enemy4.follow(player1, 40)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Spiel == 1) {
@@ -266,38 +423,6 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
             `)
     }
 })
-// Ladeanzeige
-info.onScore(1, function () {
-    tiles.setCurrentTilemap(tilemap`LadeMap`)
-    tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
-    textSprite = textsprite.create("Laden...", 13, 10)
-    textSprite1 = textsprite.create("0%", 13, 10)
-    tiles.placeOnRandomTile(textSprite, sprites.dungeon.floorMixed)
-    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
-    pause(500)
-    textSprite1 = textsprite.create("20%", 13, 10)
-    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
-    pause(500)
-    textSprite1 = textsprite.create("40%", 13, 10)
-    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
-    pause(500)
-    textSprite1 = textsprite.create("60%", 13, 10)
-    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
-    pause(500)
-    textSprite1 = textsprite.create("80%", 13, 10)
-    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
-    pause(500)
-    textSprite1 = textsprite.create("100%", 13, 10)
-    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
-    pause(500)
-    sprites.destroy(textSprite)
-    textSprite1 = textsprite.create("Teleportieren...", 13, 10)
-    tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
-    pause(500)
-    sprites.destroy(textSprite1)
-    sprites.destroy(textSprite1)
-    info.setScore(0)
-})
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     game.over(false)
 })
@@ -309,19 +434,42 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Hebel3`, function (sprite, lo
     tiles.setWallAt(tiles.getTileLocation(21, 25), false)
     tiles.setWallAt(tiles.getTileLocation(21, 24), false)
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Info2`, function (sprite, location) {
+    game.showLongText("Auf diesen Feldern gibt es Wände (ein kleines Späßchen).", DialogLayout.Top)
+    player1.x += 10
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Multiplayer, function (sprite, otherSprite) {
+	
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Info3`, function (sprite, location) {
+    game.showLongText("Überprüfe Wände, denn manchmal sind es keine!", DialogLayout.Top)
+    player1.x += 10
+})
 // Level
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (sprite, location) {
     tiles.setCurrentTilemap(tilemap`Level2`)
     tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
 })
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    game.showLongText("steuern: Pfeiltasten | A: / | B: Steuerungshilfe", DialogLayout.Bottom)
+    pause(100)
+})
+let textSprite7: TextSprite = null
+let textSprite6: TextSprite = null
+let textSprite5: TextSprite = null
+let textSprite4: TextSprite = null
+let textSprite3: TextSprite = null
+let textSprite2: TextSprite = null
+let textSprite1: TextSprite = null
+let textSprite: TextSprite = null
+let textSprite8: TextSprite = null
 let Enemy4: Sprite = null
 let Enemy3: Sprite = null
 let Enemy2: Sprite = null
 let Enemy1: Sprite = null
 let Spiel = 0
+let Ladebildschirm = 0
 let player1: Sprite = null
-let textSprite1: TextSprite = null
-let textSprite: TextSprite = null
 let Maus: Sprite = null
 let TutorialBtn: Sprite = null
 let MultiplayerBtn: Sprite = null
@@ -449,6 +597,7 @@ scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
     `)
+tiles.setCurrentTilemap(tilemap`Menü`)
 EasyBtn = sprites.create(img`
     7777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777
@@ -534,22 +683,23 @@ TutorialBtn = sprites.create(img`
     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     `, SpriteKind.Tutorial)
 Maus = sprites.create(img`
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
-    3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
+    . . . . . . . . . . . . . . . . . 
+    . . . 3 3 3 3 3 3 3 . . . . . . . 
+    . . 3 3 3 3 3 3 3 3 3 . . . . . . 
+    . 3 3 3 1 1 1 1 1 3 3 3 . . . . . 
+    . 3 3 1 1 1 1 1 1 1 3 3 . . . . . 
+    . 3 3 1 1 1 1 1 1 1 3 3 . . . . . 
+    . 3 3 1 1 1 1 1 1 1 3 3 . . . . . 
+    . 3 3 1 1 1 1 1 1 1 3 3 . . . . . 
+    . 3 3 d 1 1 1 1 1 1 3 3 . . . . . 
+    . 3 3 3 d d d d d 3 3 3 . . . . . 
+    . . 3 3 3 3 3 3 3 3 3 3 3 . . . . 
+    . . . 3 3 3 3 3 3 3 3 e 3 3 . . . 
+    . . . . . . . . . . 3 3 e 3 3 . . 
+    . . . . . . . . . . . 3 3 e 3 . . 
+    . . . . . . . . . . . . 3 3 3 . . 
+    . . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 EasyBtn.setPosition(40, 85)
 HardBtn.setPosition(120, 85)
@@ -558,5 +708,40 @@ TutorialBtn.setPosition(78, 60)
 Maus.setPosition(79, 85)
 controller.moveSprite(Maus)
 forever(function () {
-	
+    if (Ladebildschirm == 1) {
+        tiles.setCurrentTilemap(tilemap`LadeMap`)
+        tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
+        textSprite = textsprite.create("Laden...", 13, 10)
+        textSprite1 = textsprite.create("0%", 13, 10)
+        tiles.placeOnRandomTile(textSprite, sprites.dungeon.floorMixed)
+        tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
+        pause(500)
+        textSprite2 = textsprite.create("20%", 13, 10)
+        tiles.placeOnRandomTile(textSprite2, sprites.dungeon.floorDark0)
+        pause(500)
+        textSprite3 = textsprite.create("40%", 13, 10)
+        tiles.placeOnRandomTile(textSprite3, sprites.dungeon.floorDark0)
+        pause(500)
+        textSprite4 = textsprite.create("60%", 13, 10)
+        tiles.placeOnRandomTile(textSprite4, sprites.dungeon.floorDark0)
+        pause(500)
+        textSprite5 = textsprite.create("80%", 13, 10)
+        tiles.placeOnRandomTile(textSprite5, sprites.dungeon.floorDark0)
+        pause(500)
+        textSprite6 = textsprite.create("100%", 13, 10)
+        tiles.placeOnRandomTile(textSprite6, sprites.dungeon.floorDark0)
+        pause(500)
+        sprites.destroy(textSprite)
+        sprites.destroy(textSprite1)
+        sprites.destroy(textSprite2)
+        sprites.destroy(textSprite3)
+        sprites.destroy(textSprite4)
+        sprites.destroy(textSprite5)
+        sprites.destroy(textSprite6)
+        textSprite7 = textsprite.create("Teleportieren...", 13, 10)
+        tiles.placeOnRandomTile(textSprite7, sprites.dungeon.floorDark0)
+        sprites.destroy(textSprite7)
+        pause(500)
+        Ladebildschirm = 0
+    }
 })
