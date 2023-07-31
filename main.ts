@@ -14,6 +14,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
     sprites.destroy(TutorialBtn)
     sprites.destroy(Maus)
     sprites.destroy(MultiplayerBtn)
+    sprites.destroy(textSprite)
+    sprites.destroy(textSprite1)
     player1 = sprites.create(img`
         . . . . . . . c c c . . . . . . 
         . . . . . . c b 9 c . . . . . . 
@@ -32,10 +34,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
         . . . . c b 1 1 1 1 b c . . . . 
         . . . . . f f f f f f . . . . . 
         `, SpriteKind.Player)
+    scene.cameraFollowSprite(player1)
     player1.setVelocity(45, 45)
     info.setScore(1)
     tiles.setCurrentTilemap(tilemap`Level1`)
     tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
+    Spiel = 1
     controller.moveSprite(player1)
     Enemy1 = sprites.create(img`
         ........................
@@ -151,44 +155,48 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
     Enemy4.follow(player1, 40)
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    player1.setImage(img`
-        . . . . . . . c c c . . . . . . 
-        . . . . . . c b 9 c . . . . . . 
-        . . . . c c c 1 1 c c c . . . . 
-        . . c c b c 1 1 1 1 c c c c . . 
-        . c b b 1 b 1 1 1 1 b 1 b b c . 
-        . c b 1 1 b b 1 1 b b 1 1 b c . 
-        . . f 1 1 1 b b b b 1 1 1 c . . 
-        . . f f 1 1 1 1 1 1 1 1 f f . . 
-        . . f f f f f f f f f f f f . . 
-        . . f f f f f f f f f f f f . . 
-        . . . f f f f f f f f f f . . . 
-        . . . e e f f f f f f e e . . . 
-        . . e b c b 1 b b 1 b f b e . . 
-        . . e e f 9 1 1 1 1 9 f e e . . 
-        . . . . c b 1 1 1 1 b c . . . . 
-        . . . . . f f f f f f . . . . . 
-        `)
+    if (Spiel == 1) {
+        player1.setImage(img`
+            . . . . . . . c c c . . . . . . 
+            . . . . . . c b 9 c . . . . . . 
+            . . . . c c c 1 1 c c c . . . . 
+            . . c c b c 1 1 1 1 c c c c . . 
+            . c b b 1 b 1 1 1 1 b 1 b b c . 
+            . c b 1 1 b b 1 1 b b 1 1 b c . 
+            . . f 1 1 1 b b b b 1 1 1 c . . 
+            . . f f 1 1 1 1 1 1 1 1 f f . . 
+            . . f f f f f f f f f f f f . . 
+            . . f f f f f f f f f f f f . . 
+            . . . f f f f f f f f f f . . . 
+            . . . e e f f f f f f e e . . . 
+            . . e b c b 1 b b 1 b f b e . . 
+            . . e e f 9 1 1 1 1 9 f e e . . 
+            . . . . c b 1 1 1 1 b c . . . . 
+            . . . . . f f f f f f . . . . . 
+            `)
+    }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    player1.setImage(img`
-        . . . . . . . c c . . . . . . . 
-        . . . . . . c 9 c . . . . . . . 
-        . . . . c c 1 1 1 c c c . . . . 
-        . . c c c c 1 1 1 1 c b c c . . 
-        . c b b 1 b 1 1 1 1 b 1 b b c . 
-        . c b 1 1 b b 1 1 b b 1 1 b c . 
-        . . c 1 1 1 b b b b 1 1 1 f . . 
-        . . . f 1 1 1 1 1 1 1 1 f f . . 
-        . . . . f e e e f b e e f f . . 
-        . . . . f e b b f 1 b f f f . . 
-        . . . . f b b b b b b f f . . . 
-        . . . . . f e e e e f e e . . . 
-        . . . . . f 1 b b e b b e . . . 
-        . . . . f 9 1 1 1 e b b e . . . 
-        . . . . c b 1 1 1 1 e e . . . . 
-        . . . . . f f f f f f . . . . . 
-        `)
+    if (Spiel == 1) {
+        player1.setImage(img`
+            . . . . . . . c c . . . . . . . 
+            . . . . . . c 9 c . . . . . . . 
+            . . . . c c 1 1 1 c c c . . . . 
+            . . c c c c 1 1 1 1 c b c c . . 
+            . c b b 1 b 1 1 1 1 b 1 b b c . 
+            . c b 1 1 b b 1 1 b b 1 1 b c . 
+            . . c 1 1 1 b b b b 1 1 1 f . . 
+            . . . f 1 1 1 1 1 1 1 1 f f . . 
+            . . . . f e e e f b e e f f . . 
+            . . . . f e b b f 1 b f f f . . 
+            . . . . f b b b b b b f f . . . 
+            . . . . . f e e e e f e e . . . 
+            . . . . . f 1 b b e b b e . . . 
+            . . . . f 9 1 1 1 e b b e . . . 
+            . . . . c b 1 1 1 1 e e . . . . 
+            . . . . . f f f f f f . . . . . 
+            `)
+    }
 })
 // Map-Funktionen
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Hebel1`, function (sprite, location) {
@@ -215,44 +223,48 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSpr
 })
 // Laufanimationen
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    player1.setImage(img`
-        . . . . . . . c c c . . . . . . 
-        . . . . . . c b 9 c . . . . . . 
-        . . . . c c c 1 1 c c c . . . . 
-        . . c c b c 1 1 1 1 c c c c . . 
-        . c b b 1 b 1 1 1 1 b 1 b b c . 
-        . c b 1 1 b b 1 1 b b 1 1 b c . 
-        . . f 1 1 1 b b b b 1 1 1 c . . 
-        . . f f 1 1 1 1 1 1 1 1 f f . . 
-        . . f f f b f e e f b f f f . . 
-        . . f f f 1 f b b f 1 f f f . . 
-        . . . f f b b b b b b f f . . . 
-        . . . e e f e e e e f e e . . . 
-        . . e b c b 1 b b 1 b f b e . . 
-        . . e e f 9 1 1 1 1 9 f e e . . 
-        . . . . c b 1 1 1 1 b c . . . . 
-        . . . . . f f f f f f . . . . . 
-        `)
+    if (Spiel == 1) {
+        player1.setImage(img`
+            . . . . . . . c c c . . . . . . 
+            . . . . . . c b 9 c . . . . . . 
+            . . . . c c c 1 1 c c c . . . . 
+            . . c c b c 1 1 1 1 c c c c . . 
+            . c b b 1 b 1 1 1 1 b 1 b b c . 
+            . c b 1 1 b b 1 1 b b 1 1 b c . 
+            . . f 1 1 1 b b b b 1 1 1 c . . 
+            . . f f 1 1 1 1 1 1 1 1 f f . . 
+            . . f f f b f e e f b f f f . . 
+            . . f f f 1 f b b f 1 f f f . . 
+            . . . f f b b b b b b f f . . . 
+            . . . e e f e e e e f e e . . . 
+            . . e b c b 1 b b 1 b f b e . . 
+            . . e e f 9 1 1 1 1 9 f e e . . 
+            . . . . c b 1 1 1 1 b c . . . . 
+            . . . . . f f f f f f . . . . . 
+            `)
+    }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    player1.setImage(img`
-        . . . . . . . c c . . . . . . . 
-        . . . . . . . c 9 c . . . . . . 
-        . . . . c c c 1 1 1 c c . . . . 
-        . . c c b c 1 1 1 1 c c c c . . 
-        . c b b 1 b 1 1 1 1 b 1 b b c . 
-        . c b 1 1 b b 1 1 b b 1 1 b c . 
-        . . f 1 1 1 b b b b 1 1 1 c . . 
-        . . f f 1 1 1 1 1 1 1 1 f . . . 
-        . . f f e e b f e e e f . . . . 
-        . . f f f b 1 f b b e f . . . . 
-        . . . f f b b b b b b f . . . . 
-        . . . e e f e e e e f . . . . . 
-        . . . e b b e b b 1 f . . . . . 
-        . . . e b b e 1 1 1 9 f . . . . 
-        . . . . e e 1 1 1 1 b c . . . . 
-        . . . . . f f f f f f . . . . . 
-        `)
+    if (Spiel == 1) {
+        player1.setImage(img`
+            . . . . . . . c c . . . . . . . 
+            . . . . . . . c 9 c . . . . . . 
+            . . . . c c c 1 1 1 c c . . . . 
+            . . c c b c 1 1 1 1 c c c c . . 
+            . c b b 1 b 1 1 1 1 b 1 b b c . 
+            . c b 1 1 b b 1 1 b b 1 1 b c . 
+            . . f 1 1 1 b b b b 1 1 1 c . . 
+            . . f f 1 1 1 1 1 1 1 1 f . . . 
+            . . f f e e b f e e e f . . . . 
+            . . f f f b 1 f b b e f . . . . 
+            . . . f f b b b b b b f . . . . 
+            . . . e e f e e e e f . . . . . 
+            . . . e b b e b b 1 f . . . . . 
+            . . . e b b e 1 1 1 9 f . . . . 
+            . . . . e e 1 1 1 1 b c . . . . 
+            . . . . . f f f f f f . . . . . 
+            `)
+    }
 })
 // Ladeanzeige
 info.onScore(1, function () {
@@ -302,13 +314,14 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (spr
     tiles.setCurrentTilemap(tilemap`Level2`)
     tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
 })
-let textSprite1: TextSprite = null
-let textSprite: TextSprite = null
 let Enemy4: Sprite = null
 let Enemy3: Sprite = null
 let Enemy2: Sprite = null
 let Enemy1: Sprite = null
+let Spiel = 0
 let player1: Sprite = null
+let textSprite1: TextSprite = null
+let textSprite: TextSprite = null
 let Maus: Sprite = null
 let TutorialBtn: Sprite = null
 let MultiplayerBtn: Sprite = null
@@ -520,10 +533,6 @@ TutorialBtn = sprites.create(img`
     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     `, SpriteKind.Tutorial)
-EasyBtn.setPosition(40, 85)
-HardBtn.setPosition(120, 85)
-MultiplayerBtn.setPosition(78, 110)
-TutorialBtn.setPosition(78, 60)
 Maus = sprites.create(img`
     3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
     3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
@@ -542,8 +551,12 @@ Maus = sprites.create(img`
     3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
     3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 
     `, SpriteKind.Player)
+EasyBtn.setPosition(40, 85)
+HardBtn.setPosition(120, 85)
+MultiplayerBtn.setPosition(78, 110)
+TutorialBtn.setPosition(78, 60)
 Maus.setPosition(79, 85)
 controller.moveSprite(Maus)
 forever(function () {
-    scene.cameraFollowSprite(player1)
+	
 })
