@@ -1,13 +1,18 @@
 {
-    "image1": {
-        "data": "hwQQABAAAAB3d3fn7u7u7nd3d+7u7u7ud3d37u7u7u53d3fn7u7u7nd3d+fu7u7ud3d3d+7u7u53d+fu7u7u7nd3d+7u7u7ud3d35+7u7u53d3fu7u7u7nd3d+7u7u7ud3d3d+7u7u53d3fn7u7u7nd3d+7u7u7ud3fn7u7u7u53d3fn7u7u7g==",
-        "mimeType": "image/x-mkcd-f4",
-        "displayName": "bock"
-    },
     "image2": {
         "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJmZmQAAAJCZmZmZmZmZmZmZmZmZmZmZmZmZmZkAAJCZmZmZmQAAAACZmZkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Kristal"
+    },
+    "8oxU_TiwSDGlslGE5v{u": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAzAAAAAAAAMC7//8A7gAAwBvx/+/rAAC8ERH/7/wMAMy7Ef//m/vAHLEb//8R8bwRERv//xvxnBERG///G/HMHLEb//8R8QDMuxH//5v7AMwREf/v/wwAwBvx/+/rAADAu/z/AO4AAADMAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "PlayerHinten"
+    },
+    ":iH:/[40S~=": {
+        "data": "hwQRABEAAAAAAAAAAAAAAAAAAAAAMDMzMwAAAAAAAAAAMzMzMwMAAAAAAAAwMxERPTMAAAAAAAAwExER0TMAAAAAAAAwExER0TMAAAAAAAAwExER0TMAAAAAAAAwExER0TMAAAAAAAAwExER0TMAAAAAAAAwMxERMTMAAAAAAAAAMzMzMzMDAAAAAAAAMDMzM+MzAAAAAAAAAAAAADM+AwAAAAAAAAAAADDjAwAAAAAAAAAAAAAzAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Maus"
     },
     "*": {
         "mimeType": "image/x-mkcd-f4",
