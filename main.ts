@@ -4,6 +4,9 @@ namespace SpriteKind {
     export const Multiplayer = SpriteKind.create()
     export const Tutorial = SpriteKind.create()
 }
+namespace StatusBarKind {
+    export const Progress = StatusBarKind.create()
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Hard, function (sprite, otherSprite) {
 	
 })
@@ -35,7 +38,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
     scene.cameraFollowSprite(player1)
     LadebildschirmF()
     player1.setVelocity(45, 45)
-    tiles.setCurrentTilemap(tilemap`Level1`)
+    tiles.setCurrentTilemap(tilemap`Level1E`)
     tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
     Spiel = 1
     controller.moveSprite(player1)
@@ -66,7 +69,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
         ........................
         `, SpriteKind.Enemy)
     tiles.placeOnRandomTile(Enemy1, sprites.dungeon.floorLight5)
-    Enemy1.follow(player1, 40)
+    Enemy1.follow(player1, 35)
     Enemy2 = sprites.create(img`
         ........................
         ........................
@@ -94,7 +97,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
         ........................
         `, SpriteKind.Enemy)
     tiles.placeOnRandomTile(Enemy2, sprites.dungeon.floorLight1)
-    Enemy2.follow(player1, 40)
+    Enemy2.follow(player1, 35)
     Enemy3 = sprites.create(img`
         ........................
         ........................
@@ -122,7 +125,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
         ........................
         `, SpriteKind.Enemy)
     tiles.placeOnRandomTile(Enemy3, sprites.dungeon.floorLightMoss)
-    Enemy3.follow(player1, 40)
+    Enemy3.follow(player1, 35)
     Enemy4 = sprites.create(img`
         ........................
         ........................
@@ -150,15 +153,133 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Easy, function (sprite, otherSpr
         ........................
         `, SpriteKind.Enemy)
     tiles.placeOnRandomTile(Enemy4, sprites.dungeon.floorLight4)
-    Enemy4.follow(player1, 40)
+    Enemy4.follow(player1, 35)
+})
+// Level
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Ziel1E`, function (sprite, location) {
+    tiles.setCurrentTilemap(tilemap`Level2E`)
+    tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    Enemy1 = sprites.create(img`
+        ........................
+        ........................
+        ........................
+        ........................
+        ..........ffff..........
+        ........ff1111ff........
+        .......fb111111bf.......
+        .......f11111111f.......
+        ......fd11111111df......
+        ......fd11111111df......
+        ......fddd1111dddf......
+        ......fbdbfddfbdbf......
+        ......fcdcf11fcdcf......
+        .......fb111111ffff.....
+        ......fffcdb1bc111cf....
+        ....fc111cbfbf1b1b1f....
+        ....f1b1b1ffffbfbfbf....
+        ....fbfbfffffff.........
+        .........fffff..........
+        ..........fff...........
+        ........................
+        ........................
+        ........................
+        ........................
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(Enemy1, sprites.dungeon.floorLight5)
+    Enemy1.follow(player1, 35)
+    Enemy2 = sprites.create(img`
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        ..........ffff..........
+        ........ff1111ff........
+        .......fb111111bf.......
+        .....fffc1111111f.......
+        ...fc111cd1111111f......
+        ...f1b1b1b1111dddf......
+        ...fbfbffcf11fcddf......
+        ......fcf111111bbf......
+        .......ccbdb1b1fcf......
+        .......fffbfbfdff.......
+        ........ffffffff........
+        ........fffffffffff.....
+        .........fffffc111cf....
+        .........fffff1b1b1f....
+        ..........ffffbfbfbf....
+        ...........ffff.........
+        ........................
+        ........................
+        ........................
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(Enemy2, sprites.dungeon.floorLight1)
+    Enemy2.follow(player1, 35)
+    Enemy3 = sprites.create(img`
+        ........................
+        ........................
+        ........................
+        ........................
+        ..........ffff..........
+        ........ff1111ff........
+        .......fb111111bf.......
+        .......f11111111f.......
+        ......fd11111111df......
+        ......fd11111111df......
+        ......fddd1111dddf......
+        ......fbdbfddfbdbf......
+        ......fcdcf11fcdcf......
+        .......fb111111bf.......
+        ......fffcdb1bdffff.....
+        ....fc111cbfbfc111cf....
+        ....f1b1b1ffff1b1b1f....
+        ....fbfbffffffbfbfbf....
+        .........ffffff.........
+        ...........fff..........
+        ........................
+        ........................
+        ........................
+        ........................
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(Enemy3, sprites.dungeon.floorLightMoss)
+    Enemy3.follow(player1, 35)
+    Enemy4 = sprites.create(img`
+        ........................
+        ........................
+        ........................
+        ........................
+        ..........ffff..........
+        ........ff1111ff........
+        .......fb111111bf.......
+        .......f11111111f.......
+        ......fd111111111f......
+        ......fd11111111df......
+        ......fd11111111df......
+        ......fcdd1111ddcff.....
+        .......fbcf11fcbfbbf....
+        .......ffbdb1bdffff.....
+        ........fcbfbfdf........
+        ........ffffffff........
+        ......ffffffffff........
+        .....fcb1bcffff.........
+        ......ffbff.............
+        ........................
+        ........................
+        ........................
+        ........................
+        ........................
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(Enemy4, sprites.dungeon.floorLight4)
+    Enemy4.follow(player1, 35)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Info1`, function (sprite, location) {
-    game.showLongText("Auf diesen Feldern erscheinen Monster in jedem Level.", DialogLayout.Top)
-    game.showLongText("Alle Monster versuchen dich zu fangen.", DialogLayout.Top)
-    game.showLongText("Selbstverständlich musst du Ihnen ausweichen. ", DialogLayout.Top)
-    game.showLongText("Die Monster besitzen noch eine wichtige Eigenschaft:", DialogLayout.Top)
-    game.showLongText("Sie können sich auch gegenseitig fangen.", DialogLayout.Top)
-    game.showLongText("Wenn das passiert, werden alle Monster zurück zu ihren Feldern teleportiert.", DialogLayout.Top)
+    game.showLongText("Monsters appear on these fields in each level.", DialogLayout.Top)
+    game.showLongText("All monsters try to catch you.", DialogLayout.Top)
+    game.showLongText("Of course you have to avoid them.", DialogLayout.Top)
+    game.showLongText("The monsters have another important property:", DialogLayout.Top)
+    game.showLongText("They can also catch each other.", DialogLayout.Top)
+    game.showLongText("When this happens, all monsters will be teleported back to their fields.", DialogLayout.Top)
     player1.x += 10
 })
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -195,7 +316,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Tutorial, function (sprite, othe
     LadebildschirmF()
     player1.setVelocity(45, 45)
     tiles.setCurrentTilemap(tilemap`TutorialMap`)
-    textSprite8 = textsprite.create("Steuerung -> B", 13, 10)
+    textSprite8 = textsprite.create("Control Help -> B", 13, 10)
     tiles.placeOnTile(textSprite8, tiles.getTileLocation(8, 6))
     tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
     Spiel = 1
@@ -314,12 +435,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Tutorial, function (sprite, othe
     Enemy4.follow(player1, 40)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Info5`, function (sprite, location) {
-    game.showLongText("Das ist immer der Weg ins nächste Level. In diesem Fall kommst du wieder zum Menü.", DialogLayout.Bottom)
+    game.showLongText("That's always the way to the next level. In this case you come back to the menu.", DialogLayout.Bottom)
     player1.x += -10
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
     tiles.setTileAt(tiles.getTileLocation(0, 10), assets.tile`myTile0`)
-    game.showLongText("Da ist irgendwas passiert glaube ich...", DialogLayout.Top)
+    game.showLongText("I think there happened something…", DialogLayout.Top)
     player1.x += 10
     tiles.setWallAt(tiles.getTileLocation(2, 2), false)
     tiles.setWallAt(tiles.getTileLocation(2, 3), false)
@@ -348,6 +469,9 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
             . . . . . f f f f f f . . . . . 
             `)
     }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`Ziel2E`, function (sprite, location) {
+    Start()
 })
 function Start () {
     sprites.destroyAllSpritesOfKind(SpriteKind.Player)
@@ -582,11 +706,11 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Hebel1`, function (sprite, lo
     tiles.setWallAt(tiles.getTileLocation(9, 25), false)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Info4`, function (sprite, location) {
-    game.showLongText("Siehst du? Nachdem du den Hebel umgelegt hast, kann man hier durchlaufen.", DialogLayout.Top)
+    game.showLongText("See? After you flipped the lever, you can walk through here.", DialogLayout.Top)
     player1.x += 10
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Hebel2`, function (sprite, location) {
-    game.showLongText("Da ist irgendwas passiert glaube ich...", DialogLayout.Top)
+    game.showLongText("I think there happened something…", DialogLayout.Top)
     player1.y += 10
     tiles.setWallAt(tiles.getTileLocation(2, 24), false)
     tiles.setWallAt(tiles.getTileLocation(1, 23), false)
@@ -623,11 +747,8 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Info0`, function (sprite, location) {
-    game.showLongText("Das sind Wände die du mit einem Hebel öffnest. Sehe dich um!", DialogLayout.Bottom)
+    game.showLongText("These are walls that you open with a lever. Look around!", DialogLayout.Bottom)
     player1.x += 10
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`Ziel2`, function (sprite, location) {
-    Start()
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Spiel == 1) {
@@ -654,44 +775,40 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 function LadebildschirmF () {
     tiles.setCurrentTilemap(tilemap`LadeMap`)
     tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
-    textSprite = textsprite.create("Laden...", 13, 10)
     textSprite1 = textsprite.create("0%", 13, 10)
-    tiles.placeOnRandomTile(textSprite, sprites.dungeon.floorMixed)
     tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
-    pause(500)
-    textSprite2 = textsprite.create("20%", 13, 10)
-    tiles.placeOnRandomTile(textSprite2, sprites.dungeon.floorDark0)
-    pause(500)
-    textSprite3 = textsprite.create("40%", 13, 10)
-    tiles.placeOnRandomTile(textSprite3, sprites.dungeon.floorDark0)
-    pause(500)
-    textSprite4 = textsprite.create("60%", 13, 10)
-    tiles.placeOnRandomTile(textSprite4, sprites.dungeon.floorDark0)
-    pause(500)
-    textSprite5 = textsprite.create("80%", 13, 10)
-    tiles.placeOnRandomTile(textSprite5, sprites.dungeon.floorDark0)
-    pause(500)
-    textSprite6 = textsprite.create("100%", 13, 10)
-    tiles.placeOnRandomTile(textSprite6, sprites.dungeon.floorDark0)
-    pause(500)
-    sprites.destroy(textSprite)
-    sprites.destroy(textSprite1)
-    sprites.destroy(textSprite2)
-    sprites.destroy(textSprite3)
-    sprites.destroy(textSprite4)
-    sprites.destroy(textSprite5)
-    sprites.destroy(textSprite6)
-    textSprite7 = textsprite.create("Teleportieren...", 13, 10)
-    tiles.placeOnRandomTile(textSprite7, sprites.dungeon.floorDark0)
-    pause(100)
-    sprites.destroy(textSprite7)
-    pause(500)
+    statusbar = statusbars.create(20, 4, StatusBarKind.Progress)
+    statusbar.setBarSize(80, 15)
+    statusbar.positionDirection(CollisionDirection.Top)
+    statusbar.setOffsetPadding(0, 7)
+    statusbar.setColor(7, 15)
+    statusbar.setBarBorder(1, 10)
+    statusbar.value = 0
+    for (let index = 0; index < 200; index++) {
+        pause(6)
+        statusbar.value += 0.5
+        Prozent += 0.5
+        textSprite1 = textsprite.create(convertToText(Prozent), 13, 10)
+        tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
+        if (Prozent == 100) {
+            Prozent = 100
+            sprites.destroy(textSprite1)
+            textSprite1 = textsprite.create(convertToText(Prozent), 13, 10)
+            tiles.placeOnRandomTile(textSprite1, sprites.dungeon.floorDark0)
+            textSprite7 = textsprite.create("Teleport…", 13, 10)
+            tiles.placeOnRandomTile(textSprite7, sprites.dungeon.floorDark0)
+            pause(100)
+            sprites.destroy(textSprite7)
+            sprites.destroy(statusbar)
+            sprites.destroyAllSpritesOfKind(SpriteKind.Text)
+        }
+    }
 }
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
     game.over(false)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Hebel3`, function (sprite, location) {
-    game.showLongText("Da ist irgendwas passiert glaube ich...", DialogLayout.Top)
+    game.showLongText("I think there happened something…", DialogLayout.Top)
     player1.y += 10
     tiles.setWallAt(tiles.getTileLocation(20, 24), false)
     tiles.setWallAt(tiles.getTileLocation(20, 25), false)
@@ -699,37 +816,28 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Hebel3`, function (sprite, lo
     tiles.setWallAt(tiles.getTileLocation(21, 24), false)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Info2`, function (sprite, location) {
-    game.showLongText("Auf diesen Feldern gibt es Wände (ein kleines Späßchen).", DialogLayout.Top)
+    game.showLongText("There are walls on these fields (a little joke).", DialogLayout.Top)
     player1.x += 10
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Multiplayer, function (sprite, otherSprite) {
 	
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Info6`, function (sprite, location) {
-    game.showLongText("Es gibt auch manchmal Wände im Boden (ich weiß, sehr nervig).", DialogLayout.Bottom)
+    game.showLongText("There are also sometimes walls in the floor (very annoying I know).", DialogLayout.Bottom)
     player1.x += 10
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Info3`, function (sprite, location) {
-    game.showLongText("Überprüfe Wände, denn manchmal sind es keine!", DialogLayout.Top)
+    game.showLongText("Check walls because sometimes there aren't any!", DialogLayout.Top)
     player1.x += 10
 })
-// Level
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (sprite, location) {
-    tiles.setCurrentTilemap(tilemap`Level2`)
-    tiles.placeOnRandomTile(player1, sprites.dungeon.floorLight3)
-})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    game.showLongText("Steuerung: Pfeiltasten | A: / | B: Steuerungshilfe", DialogLayout.Bottom)
+    game.showLongText("Controls: Arrow Keys | A: / | B: Control Help", DialogLayout.Bottom)
     pause(100)
 })
 let textSprite7: TextSprite = null
-let textSprite6: TextSprite = null
-let textSprite5: TextSprite = null
-let textSprite4: TextSprite = null
-let textSprite3: TextSprite = null
-let textSprite2: TextSprite = null
+let Prozent = 0
+let statusbar: StatusBarSprite = null
 let textSprite1: TextSprite = null
-let textSprite: TextSprite = null
 let textSprite8: TextSprite = null
 let Enemy4: Sprite = null
 let Enemy3: Sprite = null
