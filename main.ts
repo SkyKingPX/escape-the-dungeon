@@ -435,7 +435,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Tutorial, function (sprite, othe
     Enemy4.follow(player1, 40)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`Info5`, function (sprite, location) {
-    game.showLongText("Das ist immer der Weg ins nächste Level. In diesem Fall kommst du wieder zum Menü.", DialogLayout.Bottom)
+    game.showLongText("Das ist immer der Weg ins nächste Level. (In diesem Fall funktioniert es nicht)", DialogLayout.Bottom)
     player1.x += -10
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
@@ -470,17 +470,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
             `)
     }
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`Ziel2E`, function (sprite, location) {
-    Start()
-})
 function Start () {
-    sprites.destroyAllSpritesOfKind(SpriteKind.Player)
-    sprites.destroyAllSpritesOfKind(SpriteKind.Easy)
-    sprites.destroyAllSpritesOfKind(SpriteKind.Hard)
-    sprites.destroyAllSpritesOfKind(SpriteKind.Multiplayer)
-    sprites.destroyAllSpritesOfKind(SpriteKind.Tutorial)
-    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
-    sprites.destroyAllSpritesOfKind(SpriteKind.Text)
     scene.setBackgroundImage(img`
         9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
         9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
@@ -604,6 +594,7 @@ function Start () {
         9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
         `)
     tiles.setCurrentTilemap(tilemap`Menü`)
+    pause(100)
     EasyBtn = sprites.create(img`
         7777777777777777777777777777777777777777777777777777
         7777777777777777777777777777777777777777777777777777
